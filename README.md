@@ -1,6 +1,6 @@
 # hobby_heaven
 
-HobbyHeaven web site
+A new Flutter project.
 
 ## Getting Started
 
