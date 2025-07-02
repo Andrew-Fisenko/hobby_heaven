@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
-void main() => runApp(MyShopApp());
+void main() {
+  // debugPaintSizeEnabled = true;
+  runApp(MyShopApp());
+}
+
 
 class MyShopApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Магазин',
+      title: 'HobbyHeaven',
       theme: ThemeData(
+        scaffoldBackgroundColor: Colors.grey[100],
         primarySwatch: Colors.blue,
       ),
       home: ShopPage(),
@@ -18,39 +24,50 @@ class MyShopApp extends StatelessWidget {
 class ShopPage extends StatelessWidget {
   final List<Map<String, String>> products = List.generate(
     20,
-        (index) => {
-      'title': 'Товар ${index + 1}',
-      'image': 'https://via.placeholder.com/150', // заглушка
-    },
+    (index) => {'title': 'Товар ${index + 1}'},
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Магазин'),
+        title: Text(
+          'HobbyHeaven',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 80),
         child: GridView.builder(
           itemCount: products.length,
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // два в ряд
-            crossAxisSpacing: 8,
-            mainAxisSpacing: 8,
-            childAspectRatio: 3 / 4, // пропорции карточек
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+            childAspectRatio: 1,
           ),
           itemBuilder: (context, index) {
             final product = products[index];
             return Card(
-              elevation: 3,
+              elevation: 5,
+              color: Colors.white,
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
-                    child: Image.network(
-                      product['image']!,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
+                    child: Padding(
+                      padding: const EdgeInsets.all(24),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                        child: Container(
+                          child: Image.asset(
+                            'web/images/image_0001.png',
+                            fit: BoxFit.contain,
+                            width: double.infinity,
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   Padding(
